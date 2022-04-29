@@ -14,7 +14,7 @@ const addNewUserPageTitle = "SQA: Administration: Users: Accounts: Add a new use
 // -------------------------------- admin data ----------------------------------
 const admin_username = 'tkuser'
 const admin_password = 'Moodle!123';
-const admin_fullname = 'Test User';
+const admin_fullName = 'Test User';
 
 // --------------------------------- new user data ---------------------------------------
 var new_firstName = [rnd.femaleFirstName(), rnd.maleFirstName()][Math.floor(Math.random() * 2)];
@@ -37,6 +37,6 @@ var dateTime = date+' '+time;
 
 module.exports = {
     hr, baseUrl, app, homePageTitle, loginPageTitle, dashboardPageTitle, usersPageTitle,addNewUserPageTitle, 
-    admin_username, admin_password, admin_fullname,
+    admin_username, admin_password, admin_fullName,
     new_firstName, new_lastName, new_userName, new_password, new_fullName, tld, random_domain, new_email, description_text, dateTime
 }

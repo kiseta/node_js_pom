@@ -14,10 +14,15 @@ class Methods {
         // await browser.url(url);
         await this.open(url)
         await browser.maximizeWindow();
+        await this.validateHomePage(url, title)
+        
+    }
+    
+    async validateHomePage(url, title){
         await this.validatePageTitle(title);
         await this.validatePageUrl(url);
     }
-    
+
     async validatePageTitle(title){
         const currentTitle = await browser.getTitle();
         await assert.strictEqual(currentTitle, title);
@@ -28,10 +33,14 @@ class Methods {
         await assert.strictEqual(currentUrl, url);     
     }
 
+
     //Login page locators:
     get inputUsername(){ return $('#username') }
     get inputPassword(){ return $('#password') }
     get loginBtn(){ return $('#loginbtn')  }
+    get userFullName(){ return $('span.usertext.mr-1') }
+    get logoutLink(){ return $('.menu-action-text=Log out') }
+
 
     //to enter username and password into login form and click login button
     async loginAs (username, password) {
@@ -39,22 +48,27 @@ class Methods {
         await $('=Log in').click();
         await this.validatePageTitle(data.loginPageTitle);
 
-        await $('#username').setValue(username);
-        await $('#password').setValue(password);
-        await $('#loginbtn').click();
+        await this.inputUsername.setValue(username);
+        await this.inputPassword.setValue(password);
+        await this.loginBtn.click();
 
         await this.validatePageTitle(data.dashboardPageTitle)
-
-        // add validate user Full Name
-
-        
     }
+
+    async validateLogin(fullname){
+        // add validate user Full Name
+        const fullName = await this.userFullName.getText();
+        await assert.strictEqual(fullName, fullname);
+    }
+
     async addNewUser(){
 
     }
 
-    async Logout(){
-
+    async logOut(){
+        await this.userFullName.click();
+        await this.logoutLink.click();
+        await this.validateHomePage(data.baseUrl, data.homePageTitle)
     }
 
     async searchUser(email){
