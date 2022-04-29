@@ -1,13 +1,7 @@
-//login.spec.js
+//addNewUser.spec.js
 
-const Pages = require ('../pages/pages');
+const Methods = require ('../methods/methods');
 const data = require('../data/data');
-
-// const App = require ('../pages/app');
-// const assert = require('assert');
-// const LoginPage = require ('../pages/login.page');
-// const HomePage = require('../pages/home.page');
-// const DashboardPage = require('../pages/dashboard.page')
 
 
 describe('Moodle: Add New User', () => {
@@ -23,18 +17,15 @@ describe('Moodle: Add New User', () => {
 
     it(`Launch ${data.app} app, verify Home page`, async () => {
         
-      await Pages.launchApp(data.baseUrl, data.homePageTitle)
-      // await LoginPage.loginAs(data.admin_username, data.admin_password);
+      await Methods.launchApp(data.baseUrl, data.homePageTitle)
+
 
     });
    
     it('Login, validate Dashboard page' , async () => {
-      // await LoginPage.navigate();
-      // await LoginPage.validatePageTitle(data.loginPageTitle);
-      await Pages.loginAs(data.admin_username, data.admin_password);
-      // await DashboardPage.validatePageTitle(data.dashboardPageTitle);
-      // validate user full name
-      // validate url
+
+      await Methods.loginAs(data.admin_username, data.admin_password);
+
     });
 
 

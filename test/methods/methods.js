@@ -1,8 +1,8 @@
-// pages.js
-// const App = require ('./app');
+// methods.js
 const assert = require('assert');
 const data = require ('../data/data')
 
+// app related methods
 class App {
    
     //to go to a URL 
@@ -29,7 +29,7 @@ class App {
 
 }
  
-class Pages extends App {
+class Methods extends App {
 
     //Login page locators:
     get inputUsername(){ return $('#username') }
@@ -38,6 +38,7 @@ class Pages extends App {
 
     //to enter username and password into login form and click login button
     async loginAs (username, password) {
+
         await $('=Log in').click();
         await this.validatePageTitle(data.loginPageTitle);
 
@@ -46,12 +47,18 @@ class Pages extends App {
         await $('#loginbtn').click();
 
         await this.validatePageTitle(data.dashboardPageTitle)
+
+        // add validate user Full Name
     }
 
     async addNewUser(){
 
     }
+
+    async Logout(){
+
+    }
   
 }
 
-module.exports = new Pages();
+module.exports = new Methods();
