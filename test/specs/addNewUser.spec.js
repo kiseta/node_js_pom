@@ -17,14 +17,16 @@ describe('Moodle: Add New User', () => {
 
     it(`Launch ${data.app} app, verify Home page`, async () => {
         
+      // await Methods.launchApp(data.baseUrl, data.homePageTitle)
       await Methods.launchApp(data.baseUrl, data.homePageTitle)
 
 
     });
    
-    it('Login, validate Dashboard page' , async () => {
+    it('Login as Admin User, validate Dashboard page' , async () => {
 
       await Methods.loginAs(data.admin_username, data.admin_password);
+      
 
     });
 

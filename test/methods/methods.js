@@ -2,8 +2,8 @@
 const assert = require('assert');
 const data = require ('../data/data')
 
-// app related methods
-class App {
+
+class Methods {
    
     //to go to a URL 
     open (path) {
@@ -11,7 +11,8 @@ class App {
     }
 
     async launchApp(url, title){
-        await browser.url(url);
+        // await browser.url(url);
+        await this.open(url)
         await browser.maximizeWindow();
         await this.validatePageTitle(title);
         await this.validatePageUrl(url);
@@ -26,10 +27,6 @@ class App {
         const currentUrl = await browser.getUrl();
         await assert.strictEqual(currentUrl, url);     
     }
-
-}
- 
-class Methods extends App {
 
     //Login page locators:
     get inputUsername(){ return $('#username') }
@@ -49,8 +46,9 @@ class Methods extends App {
         await this.validatePageTitle(data.dashboardPageTitle)
 
         // add validate user Full Name
-    }
 
+        
+    }
     async addNewUser(){
 
     }
@@ -58,7 +56,15 @@ class Methods extends App {
     async Logout(){
 
     }
-  
+
+    async searchUser(email){
+
+    }
+
+    async deleteUser(email){
+        await this.searchUser(email)
+    }
 }
+ 
 
 module.exports = new Methods();

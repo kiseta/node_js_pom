@@ -4,7 +4,7 @@ var rnd = require('generate-random-data');
 // ------------------------------- site data --------------------------------------
 const hr = '\n--------------~*~------------\n';
 const baseUrl = 'http://52.39.5.126/';
-const app = "Moodle LMS";
+const app = "\'Moodle\'";
 const homePageTitle = "Software Quality Assurance Testing";
 const loginPageTitle = "Software Quality Assurance Testing: Log in to the site";
 const dashboardPageTitle = "Dashboard";
