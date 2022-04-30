@@ -1,6 +1,6 @@
 // methods.js
 const assert = require('assert');
-const data = require ('../data/data')
+const data = require ('../data/data');
 
 
 class Methods {
@@ -25,19 +25,21 @@ class Methods {
 
     async validatePageTitle(title){
         const currentTitle = await browser.getTitle();
-        await assert.strictEqual(currentTitle, title);
+        assert.strictEqual(currentTitle, title);
     }
 
     async validatePageUrl(url){
         const currentUrl = await browser.getUrl();
-        await assert.strictEqual(currentUrl, url);     
+        assert.strictEqual(currentUrl, url);     
     }
 
 
     //Login page locators:
+    get loginLink(){ return $('=Log in')  }
     get inputUsername(){ return $('#username') }
     get inputPassword(){ return $('#password') }
     get loginBtn(){ return $('#loginbtn')  }
+
     get userFullName(){ return $('span.usertext.mr-1') }
     get logoutLink(){ return $('.menu-action-text=Log out') }
 
@@ -45,7 +47,8 @@ class Methods {
     //to enter username and password into login form and click login button
     async loginAs (username, password) {
 
-        await $('=Log in').click();
+        // await $('=Log in').click();
+        await this.loginLink.click();
         await this.validatePageTitle(data.loginPageTitle);
 
         await this.inputUsername.setValue(username);
@@ -57,8 +60,8 @@ class Methods {
 
     async validateLogin(fullname){
         // add validate user Full Name
-        const fullName = await this.userFullName.getText();
-        await assert.strictEqual(fullName, fullname);
+        const fullNameText = await this.userFullName.getText();
+        assert.strictEqual(fullNameText, fullname);
     }
 
     async addNewUser(){
